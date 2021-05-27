@@ -1,44 +1,44 @@
 {
-  "name": "decentralized-ehr",
-  "version": "1.0.0",
-  "description": "## Environment Setup Make sure that you have a working Node.js `>=12.0` installation. Install all of the `npm` packages.",
-  "main": "hardhat.config.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.2",
-    "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "chai": "^4.3.4",
-    "ethereum-waffle": "^3.3.0",
-    "ethers": "^5.2.0",
-    "hardhat": "^2.3.0",
-    "husky": "^6.0.0",
-    "prettier": "^2.3.0",
-    "prettier-plugin-solidity": "^1.0.0-beta.11",
-    "pretty-quick": "^3.1.0"
-  },
-  "scripts": {
-    "test": "mocha",
-    "prettier:solidity": "prettier --write contracts/**/*sol",
-    "prepare": "husky install",
-    "pretty-quick": "pretty-quick"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/small-five-dapp/decentralized-ehr.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/small-five-dapp/decentralized-ehr/issues"
-  },
-  "homepage": "https://github.com/small-five-dapp/decentralized-ehr#readme",
-  "keywords": [],
-  "husky": {
-      "hooks": {
-          "pre-commit": "pretty-quick --staged"
-      }
-  }
+    "name": "decentralized-ehr",
+    "version": "1.0.0",
+    "description": "## Environment Setup Make sure that you have a working Node.js `>=12.0` installation. Install all of the `npm` packages.",
+    "main": "hardhat.config.js",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@nomiclabs/hardhat-ethers": "^2.0.2",
+        "@nomiclabs/hardhat-waffle": "^2.0.1",
+        "chai": "^4.3.4",
+        "ethereum-waffle": "^3.3.0",
+        "ethers": "^5.2.0",
+        "hardhat": "^2.3.0",
+        "husky": "^6.0.0",
+        "prettier": "^2.3.0",
+        "prettier-plugin-solidity": "^1.0.0-beta.11",
+        "pretty-quick": "^3.1.0"
+    },
+    "scripts": {
+        "test": "mocha",
+        "prettier:solidity": "prettier --write contracts/**/*sol",
+        "prepare": "husky install",
+        "pretty-quick": "pretty-quick"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/small-five-dapp/decentralized-ehr.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/small-five-dapp/decentralized-ehr/issues"
+    },
+    "homepage": "https://github.com/small-five-dapp/decentralized-ehr#readme",
+    "keywords": [],
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    }
 }
