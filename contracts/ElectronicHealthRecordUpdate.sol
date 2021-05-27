@@ -26,4 +26,35 @@ contract ElectronicHealthRecordUpdate is ElectronicHealthRecordFactory {
         ElectronicHealthRecord storage patientRec = healthRecords[_patientId];
         patientRec.weight = _weight;
     }
+
+    /// @notice This retrieves all of the _patientId's medical data.
+    /// @param _patientId ID of the patient.
+    /// @dev In-house getter function for ElectronicHealthRecord. If we were to use
+    ///      the getter function that Solidity provides, it'd be returning a
+    ///      struct, which apparently it does not like, so we've provided a getter function.
+    function getHealthRecord(address _patientId)
+        external
+        view
+        returns (
+            uint8 month,
+            uint8 day,
+            uint16 year,
+            uint16 height,
+            uint16 weight,
+            BloodType bloodType,
+            bool hasInsurance
+        )
+    {
+        ElectronicHealthRecord memory patientHealthRecord =
+            healthRecords[_patientId];
+        return (
+            patientHealthRecord.dob.month,
+            patientHealthRecord.dob.day,
+            patientHealthRecord.dob.year,
+            patientHealthRecord.height,
+            patientHealthRecord.weight,
+            patientHealthRecord.bloodType,
+            patientHealthRecord.hasInsurance
+        );
+    }
 }

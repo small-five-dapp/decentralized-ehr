@@ -3,14 +3,20 @@ pragma solidity ^0.7.0;
 contract ElectronicHealthRecordFactory {
     enum BloodType {A, B, AB, O}
     address owner;
-    mapping(address => ElectronicHealthRecord) public healthRecords;
+    mapping(address => ElectronicHealthRecord) healthRecords;
 
     constructor() {
         owner = msg.sender;
     }
 
+    struct Date {
+        uint8 month;
+        uint8 day;
+        uint16 year;
+    }
+
     struct ElectronicHealthRecord {
-        uint16 dateOfBirth;
+        Date dob;
         uint16 height;
         uint16 weight;
         BloodType bloodType;
@@ -18,7 +24,10 @@ contract ElectronicHealthRecordFactory {
     }
 
     event EhrCreated(
-        uint16 dateOfBirth,
+        address patient,
+        uint8 month,
+        uint8 day,
+        uint16 year,
         uint16 height,
         uint16 weight,
         BloodType bloodType,
@@ -27,21 +36,27 @@ contract ElectronicHealthRecordFactory {
 
     function _createEHR(
         address _patient,
-        uint16 _dateOfBirth,
+        uint8 _month,
+        uint8 _day,
+        uint16 _year,
         uint16 _height,
         uint16 _weight,
         BloodType _bloodType,
         bool _hasInsurance
-    ) public {
+    ) external {
+        Date memory dateOfBirth = Date(_month, _day, _year);
         healthRecords[_patient] = ElectronicHealthRecord(
-            _dateOfBirth,
+            dateOfBirth,
             _height,
             _weight,
             _bloodType,
             _hasInsurance
         );
         emit EhrCreated(
-            _dateOfBirth,
+            _patient,
+            dateOfBirth.month,
+            dateOfBirth.day,
+            dateOfBirth.year,
             _height,
             _weight,
             _bloodType,
