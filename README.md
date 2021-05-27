@@ -1,4 +1,4 @@
-# Decentralised Electronic Health Records
+# Decentralized Electronic Health Records
 
 ## Environment Setup
 Make sure that you have a working Node.js `>=12.0` installation.
