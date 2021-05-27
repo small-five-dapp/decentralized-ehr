@@ -14,12 +14,16 @@
     "ethereum-waffle": "^3.3.0",
     "ethers": "^5.2.0",
     "hardhat": "^2.3.0",
+    "husky": "^6.0.0",
     "prettier": "^2.3.0",
-    "prettier-plugin-solidity": "^1.0.0-beta.11"
+    "prettier-plugin-solidity": "^1.0.0-beta.11",
+    "pretty-quick": "^3.1.0"
   },
   "scripts": {
     "test": "mocha",
-    "prettier:solidity": "prettier --write contracts/**/*sol"
+    "prettier:solidity": "prettier --write contracts/**/*sol",
+    "prepare": "husky install",
+    "pretty-quick": "pretty-quick"
   },
   "repository": {
     "type": "git",
@@ -31,5 +35,10 @@
     "url": "https://github.com/small-five-dapp/decentralized-ehr/issues"
   },
   "homepage": "https://github.com/small-five-dapp/decentralized-ehr#readme",
-  "keywords": []
+  "keywords": [],
+  "husky": {
+      "hooks": {
+          "pre-commit": "pretty-quick --staged"
+      }
+  }
 }
