@@ -6,17 +6,20 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
     "chai": "^4.3.4",
     "ethereum-waffle": "^3.3.0",
     "ethers": "^5.2.0",
-    "hardhat": "^2.3.0"
-  },
-  "devDependencies": {
-    "prettier": "2.3.0"
+    "hardhat": "^2.3.0",
+    "prettier": "^2.3.0",
+    "prettier-plugin-solidity": "^1.0.0-beta.11"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "prettier:solidity": "prettier --write contracts/**/*sol"
   },
   "repository": {
     "type": "git",
@@ -27,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/small-five-dapp/decentralized-ehr/issues"
   },
-  "homepage": "https://github.com/small-five-dapp/decentralized-ehr#readme"
+  "homepage": "https://github.com/small-five-dapp/decentralized-ehr#readme",
+  "keywords": []
 }

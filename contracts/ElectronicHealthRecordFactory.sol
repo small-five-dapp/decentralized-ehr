@@ -1,12 +1,10 @@
 pragma solidity ^0.7.0;
-pragma experimental ABIEncoderV2;
 
 contract ElectronicHealthRecordFactory {
-
     enum BloodType {A, B, AB, O}
     uint16 public ehrCount = 0;
     address owner;
-    mapping(uint => ElectronicHealthRecord) public healthRecords;
+    mapping(uint256 => ElectronicHealthRecord) public healthRecords;
 
     constructor() {
         owner = msg.sender;
@@ -27,7 +25,8 @@ contract ElectronicHealthRecordFactory {
         bool hasInsurance;
     }
 
-    event EhrCreated(uint id,
+    event EhrCreated(
+        uint256 id,
         uint16 dateOfBirth,
         uint16 height,
         uint16 weight,
@@ -41,7 +40,8 @@ contract ElectronicHealthRecordFactory {
         bool hasInsurance
     );
 
-    function _createEHR(uint16 _dateOfBirth,
+    function _createEHR(
+        uint16 _dateOfBirth,
         uint16 _height,
         uint16 _weight,
         BloodType _bloodType,
@@ -54,19 +54,20 @@ contract ElectronicHealthRecordFactory {
         bool _hasInsurance
     ) public {
         ehrCount++;
-        healthRecords[ehrCount] = 
-            ElectronicHealthRecord(ehrCount,
-                _dateOfBirth,
-                _height,
-                _weight,
-                _bloodType,
-                _medications,
-                _allergies,
-                _illnesses,
-                _medicalHistory,
-                _obstetricHistory,
-                _immunizations,
-                _hasInsurance);
+        healthRecords[ehrCount] = ElectronicHealthRecord(
+            ehrCount,
+            _dateOfBirth,
+            _height,
+            _weight,
+            _bloodType,
+            _medications,
+            _allergies,
+            _illnesses,
+            _medicalHistory,
+            _obstetricHistory,
+            _immunizations,
+            _hasInsurance
+        );
         emit EhrCreated(
             ehrCount,
             _dateOfBirth,
@@ -83,11 +84,15 @@ contract ElectronicHealthRecordFactory {
         );
     }
 
-    function getRecord(uint16 _id) public view returns(ElectronicHealthRecord memory) {
+    function getRecord(uint16 _id)
+        public
+        view
+        returns (ElectronicHealthRecord memory)
+    {
         return healthRecords[_id];
     }
 
-    function getDateOfBirthFromRecord(uint16 _id) public view returns(uint16) {
+    function getDateOfBirthFromRecord(uint16 _id) public view returns (uint16) {
         return healthRecords[_id].dateOfBirth;
     }
 }
