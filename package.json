@@ -12,7 +12,9 @@
     "ethers": "^5.2.0",
     "hardhat": "^2.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "2.3.0"
+  },
   "scripts": {
     "test": "mocha"
   },
