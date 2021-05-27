@@ -27,16 +27,4 @@ contract ElectronicHealthRecordUpdate is ElectronicHealthRecordFactory {
         patientRec.weight = _weight;
     }
 
-    /// @notice Allows users to update the medications on EHR.
-    /// @param _patientId ID of the patient. (fixme: I believe this should be an address
-    ///      instead though).
-    /// @param _medications The new medications which the EHR will be updated with.
-    /// @dev There needs to be some verifySig(sig, patientPK) function as well where the
-    ///      patient provides a signature stating that they approve the update.
-    function updateMedications(uint16 _patientId, string memory _medications)
-        external
-    {
-        ElectronicHealthRecord storage patientRec = healthRecords[_patientId];
-        patientRec.medications = _medications;
-    }
 }
