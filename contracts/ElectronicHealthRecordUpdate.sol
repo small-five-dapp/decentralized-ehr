@@ -3,6 +3,8 @@ pragma solidity ^0.7.3;
 import "./ElectronicHealthRecordFactory.sol";
 
 contract ElectronicHealthRecordUpdate is ElectronicHealthRecordFactory {
+    event RecordUpdated(address _patient);
+
     /// @notice Allows users to update the height on EHR.
     /// @param _patientId ID of the patient.
     /// @param _height The new height which the EHR will be updated with.
@@ -12,6 +14,7 @@ contract ElectronicHealthRecordUpdate is ElectronicHealthRecordFactory {
     function updateHeight(address _patientId, uint16 _height) external {
         ElectronicHealthRecord storage patientRec = healthRecords[_patientId];
         patientRec.height = _height;
+        emit RecordUpdated(_patientId);
     }
 
     /// @notice Allows users to update the weight on EHR.
@@ -23,6 +26,7 @@ contract ElectronicHealthRecordUpdate is ElectronicHealthRecordFactory {
     function updateWeight(address _patientId, uint16 _weight) external {
         ElectronicHealthRecord storage patientRec = healthRecords[_patientId];
         patientRec.weight = _weight;
+        emit RecordUpdated(_patientId);
     }
 
     /// @notice This retrieves all of the _patientId's medical data.
