@@ -2,97 +2,65 @@ pragma solidity ^0.7.0;
 
 contract ElectronicHealthRecordFactory {
     enum BloodType {A, B, AB, O}
-    uint16 public ehrCount = 0;
     address owner;
-    mapping(uint256 => ElectronicHealthRecord) public healthRecords;
+    mapping(address => ElectronicHealthRecord) healthRecords;
 
     constructor() {
         owner = msg.sender;
     }
 
+    struct Date {
+        uint8 month;
+        uint8 day;
+        uint16 year;
+    }
+
     struct ElectronicHealthRecord {
-        uint16 id;
-        uint16 dateOfBirth;
+        Date dob;
         uint16 height;
         uint16 weight;
         BloodType bloodType;
-        string medications;
-        string allergies;
-        string illnesses;
-        string medicalHistory;
-        string obstetricHistory;
-        string immunizations;
         bool hasInsurance;
     }
 
     event EhrCreated(
-        uint256 id,
-        uint16 dateOfBirth,
+        address patient,
+        uint8 month,
+        uint8 day,
+        uint16 year,
         uint16 height,
         uint16 weight,
         BloodType bloodType,
-        string medications,
-        string allergies,
-        string illnesses,
-        string medicalHistory,
-        string obstetricHistory,
-        string immunizations,
         bool hasInsurance
     );
 
     function _createEHR(
-        uint16 _dateOfBirth,
+        address _patient,
+        uint8 _month,
+        uint8 _day,
+        uint16 _year,
         uint16 _height,
         uint16 _weight,
         BloodType _bloodType,
-        string memory _medications,
-        string memory _allergies,
-        string memory _illnesses,
-        string memory _medicalHistory,
-        string memory _obstetricHistory,
-        string memory _immunizations,
         bool _hasInsurance
-    ) public {
-        ehrCount++;
-        healthRecords[ehrCount] = ElectronicHealthRecord(
-            ehrCount,
-            _dateOfBirth,
+    ) external {
+        Date memory dateOfBirth = Date(_month, _day, _year);
+        healthRecords[_patient] = ElectronicHealthRecord(
+            dateOfBirth,
             _height,
             _weight,
             _bloodType,
-            _medications,
-            _allergies,
-            _illnesses,
-            _medicalHistory,
-            _obstetricHistory,
-            _immunizations,
             _hasInsurance
         );
         emit EhrCreated(
-            ehrCount,
-            _dateOfBirth,
+            _patient,
+            dateOfBirth.month,
+            dateOfBirth.day,
+            dateOfBirth.year,
             _height,
             _weight,
             _bloodType,
-            _medications,
-            _allergies,
-            _illnesses,
-            _medicalHistory,
-            _obstetricHistory,
-            _immunizations,
             _hasInsurance
         );
-    }
-
-    function getRecord(uint16 _id)
-        public
-        view
-        returns (ElectronicHealthRecord memory)
-    {
-        return healthRecords[_id];
-    }
-
-    function getDateOfBirthFromRecord(uint16 _id) public view returns (uint16) {
-        return healthRecords[_id].dateOfBirth;
     }
 }

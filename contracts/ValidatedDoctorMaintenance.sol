@@ -9,7 +9,7 @@ contract ValidatedDoctorMaintenance is ElectronicHealthRecordFactory {
     // Mapping from addresses to booleans.
     // validatedDoctors[_address] = true indicates that the doctor
     // who owns _address has been validated.
-    mapping(address => bool) validatedDoctors;
+    mapping(address => bool) private validatedDoctors;
 
     modifier onlyOwner {
         require(msg.sender == owner, "msg.sender is not the owner.");
@@ -46,7 +46,7 @@ contract ValidatedDoctorMaintenance is ElectronicHealthRecordFactory {
     /// @param _docAddress The address whose validation status is getting
     ///         looked up.
     function checkValidationState(address _docAddress)
-        external
+        public
         view
         returns (bool)
     {
